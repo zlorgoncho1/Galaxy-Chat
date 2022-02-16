@@ -1,0 +1,100 @@
+div.inscription{
+	width: 600px;
+	height:  250px;
+	margin-left: 40px;
+	margin-top: 30px;
+
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+
+  	background-color: linear-gradient(102.89deg, rgba(28, 72, 125, 0.1) 13.09%, rgba(28, 70, 122, 0.1) 93.42%);
+	box-shadow: 0px 0px 40px 5px rgba(0, 0, 0, 0.3);
+	backdrop-filter: blur(6px);
+	border-radius: 25px;
+}
+div.inscription h2{
+	padding-top: 15px;
+	padding-bottom: 10px;
+}
+/*
+div.inscription div.overlay{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}*/
+form.inscription{
+	height: 100%;
+	width: 100%;
+	padding-bottom: 15px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+}
+form.inscription input{
+	padding-left: 20px;
+}
+form.inscription input, form.inscription div.username div.sexe{
+	width: 35%;
+	height: 30px;
+	border-color: rgba(255, 255, 255, 0);
+	background: rgba(255, 255, 255, 0.1);
+	outline: none;
+	border-radius: 6px
+}
+form.inscription div.username div.sexe{
+	background: none;
+	border-radius: none;
+}
+form.inscription div.username div.sexe span{
+	align-items: center;
+	display: flex;
+	border-color: rgba(255, 255, 255, 0);
+	background-color: rgba(0, 0, 0, 0.1);
+	mix-blend-mode: overlay;
+	border-radius: 6px;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+form.inscription div.username div.sexe span:nth-child(1){
+	align-items: center;
+	display: flex;
+	border-color: rgba(255, 255, 255, 0);
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 6px;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+form.inscription div.username div.sexe span:nth-child(3){
+	margin-right: 30%;
+}
+form.inscription div.username{
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+}
+form.inscription div.username div.sexe{
+	display: flex;
+	justify-content: space-between;
+}
+form.inscription div.password{
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+}
+form.inscription input::placeholder{
+	color: #FFF;
+}
+form.inscription button{
+	background: rgba(255, 255, 255, 0.1);
+	color: #ffffff;
+	height: 35px;
+	width:  30%;
+	border-radius: 25px;
+	text-align: center;
+	border: none;
+	cursor: pointer;
+}
