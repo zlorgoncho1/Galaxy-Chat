@@ -8,89 +8,96 @@ const Inscription = (props) => {
 	const [sexe, setSexe] = useState("")
 	const [mSexeClicked, setMSexeClicked] = useState(false)
 	const [fSexeClicked, setFSexeClicked] = useState(false)
-	const [errror, setErrror] = useState("")
+	const [error, setError] = useState("")
 
 	const usernameHandleChange = e => {
-		setErrror("")
+		setError("")
 		setUsername(e.target.value)
 	}
 	const passwordHandleChange = e => {
-		setErrror("")
+		setError("")
 		setPassword(e.target.value)
 	}
 	const confirmPasswordHandleChange = e => {
-		setErrror("")
+		setError("")
 		setConfirmPassword(e.target.value)
 	}
 
 	const mHandleClick = () => {
-		setErrror("")
+		setError("")
 		setSexe("M")
 		setMSexeClicked(true)
 		setFSexeClicked(false)
 	}
 	const fHandleClick = () => {
-		setErrror("")
+		setError("")
 		setSexe("F")
 		setFSexeClicked(true)
 		setMSexeClicked(false)
 	}
-	const inscriptionTraitement = (username, password, confirmPassword, sexe) => {
+	const errorArray = ["Le nom d'utilisateur est trop court! Minimum: 4 caractères", "Le nom d'utilisateur est trop long! Maximum: 20 caractères",
+					"Le nom d'utilisateur ne doit pas contenir de caractères spéciaux", "Oups, Vous n'avez pas défini votre sexe!",
+					"Le mot de passe est trop court! Minimum: 6 caractères", "Les mots de passe ne correspondent pas!", 
+					"Désolé, un d'utilisateur possède déjà ce nom d'utilisateur!"
+					]
+	const handleSubmit = (e) => {
+		e.preventDefault();
 		if (username.length < 4){
-			setErrror("Le nom d'utilisateur est trop court! Minimum: 4 caractères")
+			setError(errorArray[0])
 			return false
 		}
-		if (username.replace(/[^a-zA-Z0-9 ]/g, "") != username){
-			setErrror("Le nom d'utilisateur ne doit pas contenir de caractères spéciaux")
+		if (username.length > 20){
+			setError(errorArray[1])
 			return false
 		}
-		if(sexe != "M" && sexe !="F"){
-			setErrror("Oups, Vous n'avez pas défini votre sexe!")
+		if (username.replace(/[^a-zA-Z0-9 ]/g, "") !== username){
+			setError(errorArray[2])
+			return false
+		}
+		if(sexe !== "M" && sexe !=="F"){
+			setError(errorArray[3])
 			return false
 		}
 		if(password.length < 6){
-			setErrror("Le mot de passe est trop court! Minimum: 6 caractères")
+			setError(errorArray[4])
 			return false
 		}
-		if(password != confirmPassword){
-			setErrror("Les mots de passe ne correspondent pas!")
+		if(password !== confirmPassword){
+			setError(errorArray[5])
 			return false
 		}
-		return true
+		traitementInscription()
 	}
-
-	const handleSubmit = e => {
-		e.preventDefault()
-		const sameUserMessage = "Un objet user avec ce champ username existe déjà."
-		if (inscriptionTraitement(username, password, confirmPassword, sexe)){
-			fetch('http://localhost:8000/insert/',{
+	const traitementInscription = () => {
+		fetch('http://localhost:8000/insert/',{
 			method: 'POST',
 			headers: {
 		      'Accept': 'application/json',
 		      'Content-Type': 'application/json'
 		    },
-		    body: JSON.stringify({username: username, password: password, sexe: sexe, isConnected: true})
-		}).then(response => response.json()).then(user => {
-			if (user.username == sameUserMessage){
-				setErrror("Ce nom d'utilisateur a déjà été choisie !")
+		    body: JSON.stringify({username: username, password: password, sexe: sexe, isConnected: true, confirmPassword: confirmPassword})
+		})
+		.then(response => response.json()).then(user => {
+			console.log(user)
+			if(user.error !== undefined){
+				setError(user.error)
 			}
 			else{
 				setUsername("")
 				setSexe("")
-				setMSexeClicked(false)
-				setFSexeClicked(false)
+				setMSexeClicked("")
+				setMSexeClicked("")
+				props.toAuthenticate(user)
 			}
 		})
-		}
 		setPassword("")
 		setConfirmPassword("")
 	}
 
-
 	return(
 		<div className="inscription">
 			<h2>Inscription</h2>
-			{errror != "" && <p className="errror">{errror}</p>}
+			{error !== "" && <p className="error">{error}</p>}
 			<form className="inscription" onSubmit={handleSubmit}>
 				<div className="username">
 					<input type="text" placeholder="Nom d'utilisateur" value={username} onChange={usernameHandleChange}/>

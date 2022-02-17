@@ -8,8 +8,8 @@ function App(){
   const [user, setUser] = useState({
     isConnected: false
   })
+  
   const toAuthenticate = (userConnected) => {
-    console.log(userConnected)
     setUser(userConnected)
   }
   return(

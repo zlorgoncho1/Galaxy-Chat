@@ -16,7 +16,7 @@ div.connexion h2{
 	padding-top: 15px;
 	padding-bottom: 10px;
 }
-div.connexion p.errror{
+div.connexion p.error{
 	font-size: 10px;
 	font-weight: 800;
 	color: red;

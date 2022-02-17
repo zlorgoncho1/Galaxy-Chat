@@ -1,3 +1,4 @@
+from pprint import pprint
 from rest_framework import serializers
 from .models import *
 
@@ -47,7 +48,7 @@ class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
         fields = ['user','content', 'date', 'token']
-        depth = 1
+        depth = 2
 
     def create(self, validated_data):
         message = Message(user=User.objects.filter(username=validated_data['user']['username'])[0], content=validated_data['content'], date=validated_data['date'], token=validated_data['token'])
