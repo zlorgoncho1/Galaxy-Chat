@@ -9,6 +9,22 @@
   text-align: center;
   color: #fff;
 }
+.main .content{
+  padding-left: 5%;
+  padding-right: 5%;
+  display: flex;
+  justify-content: space-around;
+}
+.authentification{
+  width:  48%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  vertical-align: center;
+}
+.chatboxWrapper{
+  width: 48%;
+}
 .footer{
   width: 100%;
   height: 40px;

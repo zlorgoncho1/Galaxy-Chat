@@ -1,8 +1,7 @@
 div.inscription{
-	width: 600px;
+	width: 530px;
 	height:  250px;
-	margin-left: 40px;
-	margin-top: 30px;
+	margin-top: 7vh;
 
   	display: flex;
   	flex-direction: column;
@@ -14,18 +13,23 @@ div.inscription{
 	border-radius: 25px;
 }
 div.inscription h2{
+	z-index: 10;
 	padding-top: 15px;
 	padding-bottom: 10px;
 }
-/*
+
 div.inscription div.overlay{
+	z-index: 1;
 	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
-}*/
+	background-image: url('bg.png');
+	mix-blend-mode: overlay;
+}
 form.inscription{
+	z-index: 10;
 	height: 100%;
 	width: 100%;
 	padding-bottom: 15px;
@@ -34,43 +38,40 @@ form.inscription{
 	align-items: center;
 	justify-content: space-around;
 }
-form.inscription input{
-	padding-left: 20px;
-}
 form.inscription input, form.inscription div.username div.sexe{
 	width: 35%;
 	height: 30px;
 	border-color: rgba(255, 255, 255, 0);
 	background: rgba(255, 255, 255, 0.1);
 	outline: none;
-	border-radius: 6px
+	border-radius: 6px;
 }
 form.inscription div.username div.sexe{
 	background: none;
-	border-radius: none;
+	float: left;
 }
 form.inscription div.username div.sexe span{
-	align-items: center;
 	display: flex;
+	align-items: center;
 	border-color: rgba(255, 255, 255, 0);
 	background-color: rgba(0, 0, 0, 0.1);
 	mix-blend-mode: overlay;
 	border-radius: 6px;
-	padding-left: 5%;
-	padding-right: 5%;
+	padding-left: 10px;
+	padding-right: 10px;
+	cursor: pointer;
 }
 form.inscription div.username div.sexe span:nth-child(1){
+	cursor: text;
 	align-items: center;
 	display: flex;
 	border-color: rgba(255, 255, 255, 0);
 	background: rgba(255, 255, 255, 0.1);
 	border-radius: 6px;
-	padding-left: 5%;
-	padding-right: 5%;
+	padding-right: 12px;
+	padding-left: 12px;
 }
-form.inscription div.username div.sexe span:nth-child(3){
-	margin-right: 30%;
-}
+
 form.inscription div.username{
 	width: 100%;
 	display: flex;
@@ -79,14 +80,16 @@ form.inscription div.username{
 form.inscription div.username div.sexe{
 	display: flex;
 	justify-content: space-between;
+	padding-right: 20px;
 }
 form.inscription div.password{
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
 }
-form.inscription input::placeholder{
+form.inscription input, form.inscription input::placeholder {
 	color: #FFF;
+	padding-left: 20px;
 }
 form.inscription button{
 	background: rgba(255, 255, 255, 0.1);

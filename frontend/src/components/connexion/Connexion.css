@@ -1,7 +1,6 @@
 div.connexion{
 	width: 440px;
 	height:  230px;
-	margin-left: 60px;
 
   	display: flex;
   	flex-direction: column;
@@ -13,10 +12,12 @@ div.connexion{
 	border-radius: 25px;
 }
 div.connexion h2{
+	z-index: 10;
 	padding-top: 15px;
 	padding-bottom: 10px;
 }
 div.connexion div.overlay{
+	z-index: 1;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -26,6 +27,7 @@ div.connexion div.overlay{
 	mix-blend-mode: overlay;
 }
 form.connexion{
+	z-index: 10;
 	height: 100%;
 	width: 100%;
 	padding-bottom: 15px;
