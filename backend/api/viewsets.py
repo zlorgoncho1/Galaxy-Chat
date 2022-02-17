@@ -34,6 +34,8 @@ class InsertViewSet(mixins.CreateModelMixin, generics.GenericAPIView):
                 serializer.save()
             except:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            serializer = UserConnectedSerializer(data=request.data)
+            serializer.is_valid()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -47,7 +49,11 @@ def hello_world(request):
         if (password == user.password):
             user.isConnected = True
             user.save()
-            return Response({'status': True})
+            serializer = UserConnectedSerializer(user)
+            return Response({
+                'status': True,
+                'user': serializer.data
+                })
         return Response({'status': False})
     except:
         return Response({'Status': False})

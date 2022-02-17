@@ -8,10 +8,10 @@ const Chatbox = () => {
 	const allMessages = []
 	useEffect(() => {
 		fetch('http://localhost:8000/messages').then(response => response.json()).then(data => setMessages(data))
-	})
+	}, [])
 
 	const showMessages = messages.slice(0, 4).map(message => {
-			return <Message key={message} user={message.user} content={message.content} date={message.date} token={message.token}/>
+			return <Message key={message.token} user={message.user} content={message.content} date={message.date} token={message.token}/>
 		})
 
 	return(

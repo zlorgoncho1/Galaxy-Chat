@@ -16,6 +16,11 @@ div.connexion h2{
 	padding-top: 15px;
 	padding-bottom: 10px;
 }
+div.connexion p.errror{
+	font-size: 10px;
+	font-weight: 800;
+	color: red;
+}
 div.connexion div.overlay{
 	z-index: 1;
 	position: absolute;
@@ -37,6 +42,7 @@ form.connexion{
 	justify-content: space-around;
 }
 form.connexion input{
+	font-size: 10px;
 	background: rgba(255, 255, 255, 0.1);
 	mix-blend-mode: overlay;
 	width: 70%;

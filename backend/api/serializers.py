@@ -12,10 +12,20 @@ class UserSexeSerializer(serializers.ModelSerializer):
         model = User
         fields = ['username', 'sexe']
 
+class UserConnectedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'sexe', 'isConnected']
+
 class ConnectSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['username', 'password']
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'sexe']
 
 class InsertSerializer(serializers.ModelSerializer):
 

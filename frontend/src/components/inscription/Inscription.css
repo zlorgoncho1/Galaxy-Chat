@@ -17,7 +17,11 @@ div.inscription h2{
 	padding-top: 15px;
 	padding-bottom: 10px;
 }
-
+div.inscription p.errror{
+	font-size: 10px;
+	font-weight: 800;
+	color: red;
+}
 div.inscription div.overlay{
 	z-index: 1;
 	position: absolute;
@@ -39,6 +43,7 @@ form.inscription{
 	justify-content: space-around;
 }
 form.inscription input, form.inscription div.username div.sexe{
+	font-size: 12px;
 	width: 35%;
 	height: 30px;
 	border-color: rgba(255, 255, 255, 0);
@@ -60,6 +65,12 @@ form.inscription div.username div.sexe span{
 	padding-left: 10px;
 	padding-right: 10px;
 	cursor: pointer;
+	font-size: 10px;
+}
+form.inscription div.username div.sexe span.clicked{
+	background: rgba(0, 0, 0, 0.3);
+	box-shadow: inset 4px 4px 6px rgba(0, 0, 0, 0.25);
+	mix-blend-mode: overlay;
 }
 form.inscription div.username div.sexe span:nth-child(1){
 	cursor: text;
@@ -87,9 +98,13 @@ form.inscription div.password{
 	display: flex;
 	justify-content: space-around;
 }
-form.inscription input, form.inscription input::placeholder {
+form.inscription input{
+	font-size: 10px;
 	color: #FFF;
-	padding-left: 20px;
+	padding-left: 15px;
+}
+form.inscription input::placeholder{
+	color: #FFF;
 }
 form.inscription button{
 	background: rgba(255, 255, 255, 0.1);
