@@ -1,5 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import './Connexion.css'
+import VanillaTilt from 'vanilla-tilt';
+
 
 const Connexion = (props) => {
 
@@ -7,6 +9,20 @@ const Connexion = (props) => {
 	const [password, setPassword] = useState("")
 	const [errror, setErrror] = useState("")
 
+	/* Vanilla Tilt */
+
+	const tilt = useRef(null);
+	const options = {
+	    scale: 1.05,
+	    speed: 1000,
+	    max: 15
+	};
+	
+	useEffect(() => {
+    VanillaTilt.init(tilt.current, options);
+  	}, [options]);
+
+  	/* Vanilla Tilt */
 	const usernameHandleChange = (e) =>{
 		setErrror("")
 		const newUsername = e.target.value
@@ -41,9 +57,9 @@ const Connexion = (props) => {
 	}
 
 	return(
-		<div className="connexion">
+		<div className="connexion" ref={tilt}>
 			<h2>Connexion</h2>
-			{errror != "" && <p className="errror">{errror}</p>}
+			{errror != "" && <p className="error">{errror}</p>}
 			<form className="connexion" onSubmit={handleConnect}>
 				<input type="text" placeholder="Nom d'utilisateur" onChange={usernameHandleChange} value={username}/>
 				<input type="password" placeholder="Mot de Passe" onChange={passwordHandleChange} value={password}/>

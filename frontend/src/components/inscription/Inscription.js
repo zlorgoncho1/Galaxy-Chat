@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import './Inscription.css'
+import VanillaTilt from 'vanilla-tilt';
 
 const Inscription = (props) => {
 	const [username, setUsername] = useState("")
@@ -9,6 +10,21 @@ const Inscription = (props) => {
 	const [mSexeClicked, setMSexeClicked] = useState(false)
 	const [fSexeClicked, setFSexeClicked] = useState(false)
 	const [error, setError] = useState("")
+
+	/* Vanilla Tilt */
+
+	const tilt = useRef(null);
+	const options = {
+	    scale: 1.05,
+	    speed: 1000,
+	    max: 15
+	};
+	
+	useEffect(() => {
+    VanillaTilt.init(tilt.current, options);
+  	}, [options]);
+
+  	/* Vanilla Tilt */
 
 	const usernameHandleChange = e => {
 		setError("")
@@ -95,7 +111,7 @@ const Inscription = (props) => {
 	}
 
 	return(
-		<div className="inscription">
+		<div className="inscription" ref={tilt}>
 			<h2>Inscription</h2>
 			{error !== "" && <p className="error">{error}</p>}
 			<form className="inscription" onSubmit={handleSubmit}>

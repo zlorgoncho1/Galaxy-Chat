@@ -2,12 +2,29 @@ import React, {useState, useEffect, useRef} from 'react';
 import './Chatbox.css'
 import Message from './Message'
 import Send from './send.png'
+import VanillaTilt from 'vanilla-tilt';
+
 
 const Chatbox = (props) => {
 	const [messages, setMessages] = useState([])
 	const [messageContent, setMessageContent] = useState("")
 
 	const messagesRef = useRef()
+
+	/* Vanilla Tilt */
+
+	const tilt = useRef(null);
+	const options = {
+	    scale: 1.05,
+	    speed: 1000,
+	    max: 7
+	};
+
+	useEffect(() => {
+    VanillaTilt.init(tilt.current, options);
+  	}, [options]);
+
+  	/* Vanilla Tilt */
 
 	const handleChange = e => {
 		const newMessage = e.target.value
@@ -58,7 +75,7 @@ const Chatbox = (props) => {
 	})
 
 	return(
-		<div className="chatbox">
+		<div className="chatbox" ref={tilt}>
 			<div className={props.user.isConnected ? "messages" : "messages notConnected"}  ref={messagesRef}>
 				{showMessages}
 			</div>
