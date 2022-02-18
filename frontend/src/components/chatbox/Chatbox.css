@@ -4,13 +4,13 @@
 	overflow-y: hidden;
 	background: linear-gradient(102.89deg, rgba(45, 43, 82, 0.1) 13.09%, rgba(45, 43, 82, 0.1) 93.42%);
 	box-shadow: 0px 0px 40px 15px rgba(0, 0, 0, 0.1);
-	backdrop-filter: blur(20px);
+	backdrop-filter: blur(0.5em);
 	border-radius: 30px;
 }
 .chatbox .messages{
 	z-index: 1000;
 	margin-left: 3vw;
-	padding-top: 4vh;
+	padding-top: 1vw;
 	width: 80%;
 	height: 75%;
 	display: flex;
@@ -39,9 +39,9 @@
 .chatbox form.send textarea{
 	height: 6vh;
 	width: 25vw;
-	border-radius: 6px;
+	border-radius: 0.3em;
 	border-color: rgba(255, 255, 255, 0);
-	background: rgba(255, 255, 255, 0.3);
+	background: rgba(255, 255, 255, 0.1);
 	outline: none;
 	margin: 0;
 	padding-top: 1vh;
@@ -56,24 +56,20 @@
 	color: #FFF;
 }
 .chatbox form.send button{
-	background-color:  rgba(255, 255, 255, 0);
-	border: none;
-	cursor: pointer;
+    height: 35%;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .chatbox form.send button img{
-	position: relative;
 	margin-left: 0.7vw;
 	padding: 0.7em;
 	border-radius: 12px;
 	margin-bottom: 0.5vh;
-	background-color: rgba(255, 255, 255, 0.3);
-}
-.chatbox form.send p{
-	position: absolute;
-	right: 0;
-	font-size: 10px;
-    margin-right: 5vw; 
-    margin-top: 0.5vh;
+	background-color: rgba(255, 255, 255, 0.1);
 }
 .chatbox .overlay{
 	z-index: -1;
@@ -84,5 +80,5 @@
 	left: 0;
 	background: url('bg.png');
 	mix-blend-mode: overlay;
-	border-radius: 30px;
+	border-radius: 0.6em;
 }

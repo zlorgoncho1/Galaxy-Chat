@@ -81,11 +81,8 @@ const Chatbox = (props) => {
 			</div>
 			{props.user.isConnected &&
 			<form className="send" onSubmit={handleSubmit}>
-				<div>
-					<textarea required maxLength="160" placeholder="Ecrire un message" onChange={handleChange} value={messageContent}></textarea>
-					<button><img src={Send} width='20' height='20'/></button>
-					<p>{160 - messageContent.length}</p>
-				</div>
+				<textarea required maxLength="160" placeholder="Ecrire un message" onChange={handleChange} value={messageContent}></textarea>
+				<button><img src={Send} width='20' height='20'/></button>
 			</form>
 			}
 			<div className="overlay"></div>
