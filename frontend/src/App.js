@@ -24,7 +24,7 @@ function App(){
             </div>
           }
             <div className="chatboxWrapper">
-              <Chatbox/>
+              <Chatbox user={user}/>
             </div>
         </div>
         </div>

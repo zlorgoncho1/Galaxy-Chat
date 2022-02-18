@@ -1,18 +1,20 @@
-div.message{
+div.message.notUser{
 	margin-bottom: 5vh;
+	width: 100%;
 }
-.message .username{
+.message.notUser .username{
 	font-size: 12px;
 	width: 100%;
 	text-align: left;
 }
-.message div{
+.message.notUser div{
 	position: relative;
 	float: left;
 }
-.message div p.message{
+.message.notUser div p.message{
 	font-size: 12px;
 	margin-top: 1vh;
+	margin-right: 5vw;
 	padding-top: 2vh;
 	padding-left: 2vw;
 	padding-right: 2vw;
@@ -20,12 +22,49 @@ div.message{
 	mix-blend-mode: normal;
 	box-shadow: inset 0px 0px 10px 1px rgba(0, 0, 0, 0.25);
 	border-radius: 0px 10px 10px 10px;
+	word-break: break-all;
 }
-.message div .date{
+.message.notUser div .date{
 	font-size: 8px;
 	position: absolute;
     top: 100%;
     right: 0;
-    margin-right: 1vw; 
+    margin-right: 6vw; 
+    margin-top: 0.5vh;
+}
+/* --------------------------------------------------------- */
+div.message.isUser{
+	margin-bottom: 5vh;
+	width: 100%;
+}
+.message.isUser .username{
+	font-size: 12px;
+	width: 100%;
+	text-align: right;
+}
+.message.isUser div{
+	position: relative;
+	float: right;
+}
+.message.isUser div p.message{
+	font-size: 12px;
+	margin-top: 1vh;
+	margin-left:  5vw;
+	padding-top: 2vh;
+	padding-right: 2vw;
+	padding-left: 2vw;
+	padding-bottom: 2vh;
+	mix-blend-mode: normal;
+	box-shadow: inset 0px 0px 10px 1px rgba(0, 0, 0, 0.25);
+	border-radius: 	10px 0px 10px 10px;
+	word-break: break-all;
+	background-color: #1D4980;
+}
+.message.isUser div .date{
+	font-size: 8px;
+	position: absolute;
+    top: 100%;
+    left: 0;
+    margin-left: 6vw; 
     margin-top: 0.5vh;
 }
