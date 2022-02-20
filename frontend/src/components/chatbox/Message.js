@@ -19,7 +19,7 @@ const Message = (props) => {
 					'#1C004D': user.username !== messageUser.username && messageUser.sexe === 'F' ?
 					'#3183EA' : '#1D4980'}}
 				>{messageContent}</p>
-				<p className="date">{hours}:{minutes}</p>
+				<p className="date">{hours < 10 ? '0'+hours : hours}:{minutes < 10 ? '0'+minutes : minutes}</p>
 			</div>
 		</div>
 	)}

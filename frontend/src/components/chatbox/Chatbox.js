@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useMemo} from 'react';
 import './Chatbox.css'
 import Message from './Message'
 import Send from './send.png'
@@ -14,15 +14,18 @@ const Chatbox = (props) => {
 	/* Vanilla Tilt */
 
 	const tilt = useRef(null);
-	const options = {
+
+	const options = useMemo(() =>{
+		return {
 	    scale: 1.05,
 	    speed: 1000,
 	    max: 7
-	};
+	}}, []);
 
 	useEffect(() => {
-    VanillaTilt.init(tilt.current, options);
-  	}, [options]);
+		VanillaTilt.init(tilt.current, options);
+	}, [options])
+	
 
   	/* Vanilla Tilt */
 
@@ -37,7 +40,7 @@ const Chatbox = (props) => {
 		}
 	}
 	const sendNewMessage = () => {
-		fetch('http://localhost:8000/messages/',{
+		fetch('http://localhost:8000/postMessage/',{
 			method: 'POST',
 			headers: {
 		      'Accept': 'application/json',
@@ -60,13 +63,25 @@ const Chatbox = (props) => {
 		ref.scrollTop = ref.scrollHeight - ref.clientHeight
 		return ref.scrollTop
 	}
-	const getStateData = () => messages
-		useEffect(() => {
-		fetch('http://localhost:8000/messages').then(response => response.json()).then(data =>{
-			setMessages(data)
-			toScroll()
-		})
-	})
+
+	useEffect(() => {
+
+		async function getMessages(){
+			const data = await fetch('http://localhost:8000/getMessages/',{
+				method: 'POST',
+				headers: {
+			      'Accept': 'application/json',
+			      'Content-Type': 'application/json'
+			    },
+			    body: JSON.stringify(messages)
+			}).then(response => response.json()).then(data => setMessages(data))
+			return data
+		}
+		getMessages()
+		
+		toScroll()
+	}, [messages])
+
 	const showMessages = messages.map(message => {
 			return <Message 
 			key={message.token} messageUser={message.user} 
@@ -82,7 +97,7 @@ const Chatbox = (props) => {
 			{props.user.isConnected &&
 			<form className="send" onSubmit={handleSubmit}>
 				<textarea required maxLength="160" placeholder="Ecrire un message" onChange={handleChange} value={messageContent}></textarea>
-				<button><img src={Send} width='20' height='20'/></button>
+				<button><img src={Send} alt='send' width='20' height='20'/></button>
 			</form>
 			}
 			<div className="overlay"></div>

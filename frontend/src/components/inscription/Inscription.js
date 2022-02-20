@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useMemo} from 'react';
 import './Inscription.css'
 import VanillaTilt from 'vanilla-tilt';
 
@@ -14,15 +14,18 @@ const Inscription = (props) => {
 	/* Vanilla Tilt */
 
 	const tilt = useRef(null);
-	const options = {
+	
+	const options = useMemo(() =>{
+		return {
 	    scale: 1.05,
 	    speed: 1000,
-	    max: 15
-	};
-	
+	    max: 7
+	}}, []);
+
 	useEffect(() => {
-    VanillaTilt.init(tilt.current, options);
-  	}, [options]);
+		VanillaTilt.init(tilt.current, options);
+	}, [options])
+
 
   	/* Vanilla Tilt */
 

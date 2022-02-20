@@ -5,16 +5,15 @@ from rest_framework.decorators import api_view
 from django.http import Http404
 import re
 
+import json
+import time
+from pprint import pprint
+
 from .serializers import *
 from .models import *
 
 
-class MessageViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
-
-    queryset = Message.objects.all()
-    serializer_class = MessagesSerializer
-    def get(self, request):
-        return self.list(request)
+class PostMessageViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
 
     def post(self, request, format=None):
         serializer = MessageSerializer(data=request.data)
@@ -25,6 +24,18 @@ class MessageViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Ge
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class GetMessagesViewset(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+
+    def post(self, request, format=None):
+        while True:
+            messages = [message for message in Message.objects.all()]
+            messagesSerialized = MessagesSerializer([message for message in Message.objects.all()], many=True)
+            messages = json.loads(json.dumps(messagesSerialized.data))
+            if request.data != messages:
+                break
+        return Response(messagesSerialized.data)
+
 
 class InsertViewSet(mixins.CreateModelMixin, generics.GenericAPIView):
 

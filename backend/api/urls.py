@@ -5,5 +5,6 @@ from .viewsets import *
 urlpatterns = [
     path('insert/', InsertViewSet.as_view()),
     path('connect/', hello_world),
-    path('messages/', MessageViewSet.as_view()),
+    path('postMessage/', PostMessageViewSet.as_view()),
+    path('getMessages/', GetMessagesViewset.as_view())
 ]

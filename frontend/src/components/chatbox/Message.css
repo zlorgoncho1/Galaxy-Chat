@@ -64,7 +64,7 @@ div.message.isUser{
 	font-size: 0.5em;
 	position: absolute;
     top: 100%;
-    right: 0;
-    margin-right: 6vw; 
+    left: 0;
+    margin-left: 6vw; 
     margin-top: 0.2vw;
 }
